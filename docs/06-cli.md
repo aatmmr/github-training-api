@@ -16,14 +16,14 @@
 - For Enterprise Server add `--hostname <hostname>`
 - Troubleshooting: `gh auth status`
 
-## Usage
+gh api repos/aatmmr/github-training-api/issues --paginate --jq length## Usage
 
 ### Pagination
 
 Get issue count of a repository:
 
 ```bash
-gh api repos/xpirit-training/demo-features-issueops/issues --paginate --jq length
+
 ```
 
 ### Fetch Repositories of Oranization
@@ -31,7 +31,7 @@ gh api repos/xpirit-training/demo-features-issueops/issues --paginate --jq lengt
 The query string can be added inline
 
 ```bash
-gh api graphql -F login='xpirit-training' -f query='
+gh api graphql -F login='octokit' -f query='
   query($login: String!) {
     organization(login: $login) {
       repositories(first: 20) {
@@ -45,7 +45,7 @@ gh api graphql -F login='xpirit-training' -f query='
 or as file
 
 ```bash
-gh api graphql -F login=aatmmr -F query=@src/graphql/list-repos.graphql --paginate
+gh api graphql -F login=octokit -F query=@src/graphql/list-repos.graphql --paginate
 ```
 
 Be aware that to add a `@` in front of the file name and that any parameter that is used in the query in the file must be added as `-F` parameter in the CLI command to be passed in to the query.
@@ -74,6 +74,17 @@ Listing the secrets of the repository gets as simple as
 ```bash
 gh secret list
 ```
+## GitHub CLI in GitHub Action Workflows
+
+The GitHub CLI can be used in GitHub Action Workflows as it is preinstalled on GitHub hosted runners. Simply use the `gh` command in the workflow in a `run` step.
+
+An example can be found in [CLI Demo Workflow](../.github/workflows/cli-demo.yml).
+
+>[!IMPORTANT]
+> Make sure to checkout the repository before using the `gh` command as the CLI needs the repository to be present to know the context.
+
+> [!IMPORTANT]
+> The `GITHUB_TOKEN` has to be passed to the `gh` command as an environment variable (`env`) to authenticate the command. The token is automatically provided in the workflow with the restricted scope of the repository the workflow is executed from.
 
 ## Extensions
 
