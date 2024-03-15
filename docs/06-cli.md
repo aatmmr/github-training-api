@@ -45,31 +45,34 @@ gh api graphql -F login='xpirit-training' -f query='
 or as file
 
 ```bash
-gh api graphql —-paginate -f organization=<orgname> -f query="@path/to/query-file.graphql"
+gh api graphql -F login=aatmmr -F query=@src/graphql/list-repos.graphql --paginate
 ```
 
-## Use build in Commands
+Be aware that to add a `@` in front of the file name and that any parameter that is used in the query in the file must be added as `-F` parameter in the CLI command to be passed in to the query.
 
-Fetch issues of a repository:
+## Use Build-In Commands
+
+The CLI has a long list pf build in commands that wrap API calls. For example, you can list issues of a repository:
 
 ```bash
-gh issue list --repo xpirit-training/demo-features-issueops
+gh issue list --repo octokit/octokit.js 
 ```
+This call is independent of the context you are in as the desired repository is defined via `--repo`.
 
 ## Context Awareness
 
 The CLI is aware of the context you are in. For example, if you are in a repository folder, the CLI will use the repository as the default context.
 
-You can list secrets of a repository:
-
-```bash
-gh secret list
-```
-
-or run 
+Listing the issues of the repository gets as simple as
 
 ```bash
 gh issue list
+```
+
+Listing the secrets of the repository gets as simple as
+
+```bash
+gh secret list
 ```
 
 ## Extensions

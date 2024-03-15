@@ -27,7 +27,7 @@ Repository information is a paginated list. You can use `first` and `after` to f
 
 ```graphql
 query {
-  organization(login: "xpirit-training") {
+  organization(login: "octokit") {
     repositories(first: 3) {
       nodes {
         id
@@ -80,8 +80,8 @@ query {
 Define variable in `query` and is use it in desired place, e.g. `login`.
 
 ```graphql
-query ($org: String!) {
-  user(login: $org) {
+query ($login: String!) {
+  user(login: $login) {
     repositories(first: 20) {
       nodes {
         name
@@ -95,7 +95,7 @@ Assign value to variable separately ( separate, transport-specific (usually JSON
 
 ```json
 {
-  "org": "xpirit-training"
+  "login": "aatmmr"
 }
 ```
 
@@ -109,8 +109,8 @@ Assign value to variable separately ( separate, transport-specific (usually JSON
 #### Available Fragment from Scheme
 
 ```graphql
-query ($org: String!) {
-  organization(login: $org) {
+query {
+  organization(login: "octokit") {
     auditLog(first: 20) {
       nodes {
         ... on AuditEntry {
@@ -122,32 +122,38 @@ query ($org: String!) {
 }
 ```
 
+> [!IMPORTANT]
+> This query required owner access to the organization.
+
 #### Own Fragment
 
 ```graphql
-query ($org: String!) {
-  organization(login: $org) {
+query {
+  organization(login: "octokit") {
     auditLog(first: 20) {
       nodes {
-        ...repoAccess
+        ...auditInformation
       }
     }
   }
 }
 
-fragment repoAccess on AuditEntry {
+fragment auditInformation on AuditEntry {
   action
 }
 ```
 
-Now add more fields to the fragment (below `action` in fragment).
+Now add more fields to the fragment (below `action` in fragment) to build up a desired response.
 
 ```graphql
+fragment auditInformation on AuditEntry {
+  action
   actor {
     ... on User {
       login
     }
   }
+}
 ```
 
 ### Aliases
@@ -172,7 +178,7 @@ query {
 
 ```graphql
 mutation {
-  changeUserStatus(input: { emoji: ":owl:", message: null }) {
+  changeUserStatus(input: { emoji: ":owl:", message: "Status via GraphQL API" }) {
     status {
       message
       emoji
@@ -191,7 +197,7 @@ First, get repository ID.
 
 ```graphql
 query {
-  repository(owner: "xpirit-training", name: "training-manual") {
+  repository(owner: "aatmmr", name: "github-training-api") {
     id
   }
 }
@@ -201,7 +207,7 @@ Use fetched `id` to change repository name.
 
 ```graphql
 mutation($repoId: ID!) {
-  updateRepository(input: { repositoryId: $repoId, name: "training manual" }) {
+  updateRepository(input: { repositoryId: $repoId, name: "github-training-api-new-name" }) {
     repository {
       name
     }

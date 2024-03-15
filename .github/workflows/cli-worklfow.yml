@@ -1,0 +1,10 @@
+name: CLI Demo Workflow
+
+on: workflow_dispatch
+
+jobs:
+    list-issues:
+        runs-on: ubuntu-latest
+        steps:
+            - name: List Issues
+              run: gh issue list
