@@ -1,0 +1,9 @@
+query ($login: String!) {
+  organization(login: $login) {
+    repositories(first: 20) {
+      nodes {
+        name
+      }
+    }
+  }
+}
