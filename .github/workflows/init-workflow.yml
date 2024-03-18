@@ -1,0 +1,22 @@
+name: Prepare Repository
+
+on: [create, workflow_dispatch]
+
+permissions: 
+  issues: write
+  contents: read
+
+jobs:
+  initialize_repo:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Create Issues for Demos
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create -t "🤖 GitHub's API helps you automate things" -b "The API is a powerful tool that can help you automate many things. You can use it to create issues, manage projects, and much more."
+          gh issue create -t "🧙 Let Your Creativity Flow" -b "Let you imagination flow and make use of GitHub's API and build epic stuff 🚀"
+          
