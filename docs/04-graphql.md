@@ -215,7 +215,7 @@ mutation($repoId: ID!) {
 }
 ```
 
-The ìd` is passed as a variable.
+The `id` is passed as a variable.
 
 ```json
 {
