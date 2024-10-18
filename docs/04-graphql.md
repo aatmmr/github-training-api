@@ -21,19 +21,25 @@ query {
 
 ### Paginated Query
 
-Repository information is a paginated list. You can use `first` and `after` to fetch more data, i.e. `repositories(first: 3)`.
+Repository information is a paginated list. You can use `first` and `after` to fetch more data, i.e. `repositories(first: 3)`. You can find a detailed explanation of the usage and approaches of pagination [here](https://github.com/JefferyHus/graphql-pagination).
 
 #### Organization
 
 ```graphql
 query {
   organization(login: "octokit") {
-    repositories(first: 3) {
+    repositories(first: 3, after: null) {
       nodes {
         id
         name
         description
       }
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
+        hasPreviousPage
+      } 
     }
   }
 }
@@ -46,12 +52,18 @@ Query repositories of a user. Change `organisation` with `user` and `login` with
 ```graphql
 query {
   user(login: "aatmmr") {
-    repositories(first: 3) {
+    repositories(first: 3, after: null) {
       nodes {
         id
         name
         description
       }
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
+        hasPreviousPage
+      } 
     }
   }
 }
@@ -62,7 +74,7 @@ Fetch more data you are interested in. For example, you can add `url` and `creat
 ```graphql
 query {
   user(login: "aatmmr") {
-    repositories(first: 20) {
+    repositories(first: 20, after: null) {
       nodes {
         id
         name
@@ -70,6 +82,12 @@ query {
         url
         createdAt
       }
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
+        hasPreviousPage
+      } 
     }
   }
 }
