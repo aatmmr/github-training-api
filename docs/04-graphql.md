@@ -92,7 +92,6 @@ query {
   }
 }
 ```
-
 ### Simplify with Variables
 
 Define variable in `query` and is use it in desired place, e.g. `login`.
