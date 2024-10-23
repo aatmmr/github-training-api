@@ -12,16 +12,12 @@ The repository is designed as a template. Click "Use Template" to create a new r
 
 ## Structure
 
-- `docs`: Contains demo-related content and commands and adds links to additional resources.
-- `src/graphql`: Contains example GraphQL queries used in CLI calls.
-- `src/octokit`: Contains a simple example of how to use Octokit with JavaScript.
-- `src/probot`: Contains a simple example of a Probot app. Find instructions in the [README](src/probot/example-app/README.md)
-- `.github/workflows`: Contains a GitHub Action workflow that uses the GitHub CLI to list issues of a repository.
+- [`/docs`](docs/): Contains demo-related content and commands and adds links to additional resources.
+- [`/src/graphql`](src/graphql): Contains example GraphQL queries used in CLI calls.
+- [`/src/octokit`](src/octokit): Contains a simple example of how to use Octokit with JavaScript.
+- [`/src/probot`](src/probot/example-app): Contains a simple example of a Probot app. Find instructions in the [README](src/probot/example-app/README.md)
+- [`/.github/workflows`](.github/workflows): Contains a GitHub Action workflow that uses the GitHub CLI to list issues of a repository.
 
 ## Contribute
 
 If you have a demo or example that you would like to share, please open a pull request. 
-
-There are some pieces missing that would be great to have:
-
-- Simple Probot Demo executed from a GitHub Action.
