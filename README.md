@@ -15,6 +15,7 @@ The repository is designed as a template. Click "Use Template" to create a new r
 - `docs`: Contains demo-related content and commands and adds links to additional resources.
 - `src/graphql`: Contains example GraphQL queries used in CLI calls.
 - `src/octokit`: Contains a simple example of how to use Octokit with JavaScript.
+- `src/probot`: Contains a simple example of a Probot app. Find instructions in the [README](src/probot/example-app/README.md)
 - `.github/workflows`: Contains a GitHub Action workflow that uses the GitHub CLI to list issues of a repository.
 
 ## Contribute
